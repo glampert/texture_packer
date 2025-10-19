@@ -112,6 +112,15 @@ impl<'a, Pix: Pixel, T: Clone + Texture<Pixel = Pix>, K: Clone + Eq + Hash>
         Ok(())
     }
 
+    /// Get the underlying texture for the given frame key.
+    pub fn get_texture(&self, key: &K) -> Option<&T> {
+        if let Some(sub_tex) = self.textures.get(key) {
+            Some(sub_tex.texture())
+        } else {
+            None
+        }
+    }
+
     /// Get the backing mapping from strings to frames.
     pub fn get_frames(&self) -> &HashMap<K, Frame<K>> {
         &self.frames

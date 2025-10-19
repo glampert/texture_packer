@@ -24,6 +24,11 @@ impl<'a, T: Texture + Clone> SubTexture<'a, T> {
             source,
         }
     }
+
+    /// Get underlying texture object.
+    pub fn texture(&self) -> &T {
+        &self.texture
+    }
 }
 
 impl<'a, T: Texture + Clone> Texture for SubTexture<'a, T> {
